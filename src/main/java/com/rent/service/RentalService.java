@@ -6,7 +6,7 @@ import com.rent.model.Rental;
 
 public interface RentalService {
 
-    Rental addRental(Rental rental);
+	String addRental(Rental rental);
 
     List<Rental> getAllRentals();
 

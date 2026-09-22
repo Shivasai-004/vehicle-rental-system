@@ -25,10 +25,9 @@ public class RentalController {
     }
 
     @PostMapping
-    public Rental addRental(@RequestBody Rental rental) {
+    public String addRental(@RequestBody Rental rental) {
         return rentalService.addRental(rental);
     }
-
     @GetMapping
     public List<Rental> getAllRentals() {
         return rentalService.getAllRentals();
