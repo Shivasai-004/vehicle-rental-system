@@ -3,7 +3,16 @@ package com.rent.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.validation.Valid;
 
 import com.rent.model.Customer;
 import com.rent.service.CustomerService;
@@ -16,7 +25,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping
-    public Customer addCustomer(@RequestBody Customer customer) {
+    public Customer addCustomer(@Valid @RequestBody Customer customer) {
         return customerService.addCustomer(customer);
     }
 
@@ -31,8 +40,10 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public Customer updateCustomer(@PathVariable Long id,
-                                   @RequestBody Customer customer) {
+    public Customer updateCustomer(
+            @PathVariable Long id,
+            @Valid @RequestBody Customer customer) {
+
         return customerService.updateCustomer(id, customer);
     }
 
