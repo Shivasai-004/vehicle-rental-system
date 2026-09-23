@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 import com.rent.model.Vehicle;
 import com.rent.service.VehicleService;
 
@@ -17,7 +19,7 @@ public class VehicleController {
     private VehicleService vehicleService;
 
     @PostMapping
-    public Vehicle addVehicle(@RequestBody Vehicle vehicle) {
+    public Vehicle addVehicle(@Valid @RequestBody Vehicle vehicle) {
         return vehicleService.addVehicle(vehicle);
     }
 
@@ -30,13 +32,11 @@ public class VehicleController {
     public Vehicle getVehicleById(@PathVariable Long id) {
         return vehicleService.getVehicleById(id);
     }
-
     @PutMapping("/{id}")
     public Vehicle updateVehicle(@PathVariable Long id,
-                                 @RequestBody Vehicle vehicle) {
+                                 @Valid @RequestBody Vehicle vehicle) {
         return vehicleService.updateVehicle(id, vehicle);
     }
-
     @DeleteMapping("/{id}")
     public String deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);

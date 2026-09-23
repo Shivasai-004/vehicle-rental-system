@@ -1,10 +1,14 @@
+
 package com.rent.model;
 
 import jakarta.persistence.Entity;
-
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 
 @Entity
 public class Vehicle {
@@ -13,11 +17,25 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Vehicle number is required")
+    @Size(max = 20, message = "Vehicle number must not exceed 20 characters")
     private String vehicleNumber;
+
+    @NotBlank(message = "Brand is required")
+    @Size(max = 50, message = "Brand must not exceed 50 characters")
     private String brand;
+
+    @NotBlank(message = "Model is required")
+    @Size(max = 50, message = "Model must not exceed 50 characters")
     private String model;
+
+    @NotBlank(message = "Type is required")
+    @Size(max = 30, message = "Type must not exceed 30 characters")
     private String type;
+
+    @Positive(message = "Price per day must be greater than 0")
     private double pricePerDay;
+
     private boolean available;
 
     public Vehicle() {
@@ -79,3 +97,4 @@ public class Vehicle {
         this.available = available;
     }
 }
+

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rent.exception.VehicleNotFoundException;
 import com.rent.model.Vehicle;
 import com.rent.repo.VehicleRepo;
 
@@ -25,33 +26,41 @@ public class VehicleServiceImp implements VehicleService {
         return vehicleRepo.findAll();
     }
 
+    
     @Override
     public Vehicle getVehicleById(Long id) {
-        return vehicleRepo.findById(id).orElse(null);
-    }
 
+        return vehicleRepo.findById(id).orElseThrow(() ->new VehicleNotFoundException("Vehicle not found with id: " + id));
+    }
+    
+
+    
     @Override
     public Vehicle updateVehicle(Long id, Vehicle vehicle) {
 
-        Vehicle existingVehicle = vehicleRepo.findById(id).orElse(null);
+        Vehicle existingVehicle = vehicleRepo.findById(id)
+                .orElseThrow(() ->
+                        new VehicleNotFoundException(
+                                "Vehicle not found with id: " + id));
 
-        if (existingVehicle != null) {
+        existingVehicle.setVehicleNumber(vehicle.getVehicleNumber());
+        existingVehicle.setBrand(vehicle.getBrand());
+        existingVehicle.setModel(vehicle.getModel());
+        existingVehicle.setType(vehicle.getType());
+        existingVehicle.setPricePerDay(vehicle.getPricePerDay());
+        existingVehicle.setAvailable(vehicle.isAvailable());
 
-            existingVehicle.setVehicleNumber(vehicle.getVehicleNumber());
-            existingVehicle.setBrand(vehicle.getBrand());
-            existingVehicle.setModel(vehicle.getModel());
-            existingVehicle.setType(vehicle.getType());
-            existingVehicle.setPricePerDay(vehicle.getPricePerDay());
-            existingVehicle.setAvailable(vehicle.isAvailable());
-
-            return vehicleRepo.save(existingVehicle);
-        }
-
-        return null;
-    }
-
+        return vehicleRepo.save(existingVehicle);
+    } 
+    
     @Override
     public void deleteVehicle(Long id) {
+
+        if (!vehicleRepo.existsById(id)) {
+            throw new VehicleNotFoundException(
+                    "Vehicle not found with id: " + id);
+        }
+
         vehicleRepo.deleteById(id);
     }
 
