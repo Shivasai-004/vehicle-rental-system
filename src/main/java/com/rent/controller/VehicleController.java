@@ -1,3 +1,4 @@
+
 package com.rent.controller;
 
 import java.util.List;
@@ -40,5 +41,38 @@ public class VehicleController {
     public String deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
         return "Vehicle deleted successfully";
+    }
+
+    // Search by brand
+    @GetMapping("/search/brand/{brand}")
+    public List<Vehicle> searchByBrand(@PathVariable String brand) {
+        return vehicleService.searchByBrand(brand);
+    }
+
+    // Search by model
+    @GetMapping("/search/model/{model}")
+    public List<Vehicle> searchByModel(@PathVariable String model) {
+        return vehicleService.searchByModel(model);
+    }
+
+    // Filter by type
+    @GetMapping("/filter/type/{type}")
+    public List<Vehicle> filterByType(@PathVariable String type) {
+        return vehicleService.filterByType(type);
+    }
+
+    // Filter by availability
+    @GetMapping("/filter/available/{available}")
+    public List<Vehicle> filterByAvailability(@PathVariable boolean available) {
+        return vehicleService.filterByAvailability(available);
+    }
+
+    // Filter by price range
+    @GetMapping("/filter/price")
+    public List<Vehicle> filterByPriceRange(
+            @RequestParam double min,
+            @RequestParam double max) {
+
+        return vehicleService.filterByPriceRange(min, max);
     }
 }
