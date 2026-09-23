@@ -81,6 +81,6 @@ public class RentalController {
         return rentalService.returnVehicle(id);
 
     }
-
+    
 }
 

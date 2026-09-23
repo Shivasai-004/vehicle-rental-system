@@ -9,5 +9,6 @@ import com.rent.model.Rental;
 public interface RentalRepo extends JpaRepository<Rental, Long> {
 
     Optional<Rental> findByVehicleIdAndReturnedFalse(Long vehicleId);
+    
 
 }

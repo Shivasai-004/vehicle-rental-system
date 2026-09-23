@@ -19,21 +19,13 @@ public class Rental {
     private String startDate;
     private String endDate;
 
-    private double totalAmount;
+    private Double totalAmount;
     private boolean returned;
 
     public Rental() {
     }
 
-    public Rental(Long id, Long vehicleId, Long customerId, String startDate, String endDate, double totalAmount, boolean returned) {
-        this.id = id;
-        this.vehicleId = vehicleId;
-        this.customerId = customerId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.totalAmount = totalAmount;
-        this.returned = returned;
-    }
+    
 
     public Long getId() {
         return id;
