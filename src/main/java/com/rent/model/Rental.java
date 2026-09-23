@@ -1,6 +1,7 @@
 package com.rent.model;
 
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,17 +20,19 @@ public class Rental {
     private String endDate;
 
     private double totalAmount;
+    private boolean returned;
 
     public Rental() {
     }
 
-    public Rental(Long id, Long vehicleId, Long customerId, String startDate, String endDate, double totalAmount) {
+    public Rental(Long id, Long vehicleId, Long customerId, String startDate, String endDate, double totalAmount, boolean returned) {
         this.id = id;
         this.vehicleId = vehicleId;
         this.customerId = customerId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.totalAmount = totalAmount;
+        this.returned = returned;
     }
 
     public Long getId() {
@@ -78,5 +81,12 @@ public class Rental {
 
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
+    }
+    public boolean isReturned() {
+        return returned;
+    }
+
+    public void setReturned(boolean returned) {
+        this.returned = returned;
     }
 }

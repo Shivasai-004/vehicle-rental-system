@@ -28,6 +28,7 @@ public class RentalServiceImpl implements RentalService {
         this.vehicleRepo = vehicleRepo;
 
         this.customerRepo = customerRepo;
+
     }
 
     @Override
@@ -38,15 +39,21 @@ public class RentalServiceImpl implements RentalService {
         Customer customer = customerRepo.findById(rental.getCustomerId()).orElse(null);
 
         if (vehicle == null) {
+
             return "Vehicle not found";
+
         }
 
         if (customer == null) {
+
             return "Customer not found";
+
         }
 
         if (!vehicle.isAvailable()) {
+
             return "Vehicle is currently not available";
+
         }
 
         vehicle.setAvailable(false);
@@ -56,18 +63,21 @@ public class RentalServiceImpl implements RentalService {
         rentalRepo.save(rental);
 
         return "Rental created successfully";
+
     }
 
     @Override
     public List<Rental> getAllRentals() {
 
         return rentalRepo.findAll();
+
     }
 
     @Override
     public Rental getRentalById(Long id) {
 
         return rentalRepo.findById(id).orElse(null);
+
     }
 
     @Override
@@ -88,9 +98,11 @@ public class RentalServiceImpl implements RentalService {
             existingRental.setTotalAmount(rental.getTotalAmount());
 
             return rentalRepo.save(existingRental);
+
         }
 
         return null;
+
     }
 
     @Override
@@ -107,34 +119,44 @@ public class RentalServiceImpl implements RentalService {
                 vehicle.setAvailable(true);
 
                 vehicleRepo.save(vehicle);
+
             }
 
             rentalRepo.deleteById(id);
+
         }
+
     }
 
     // Calculate Rental Amount
-    
+
     @Override
     public double calculateRentalAmount(Long rentalId) {
 
         Rental rental = rentalRepo.findById(rentalId).orElse(null);
 
         if (rental == null) {
+
             return 0;
+
         }
 
         Vehicle vehicle = vehicleRepo.findById(rental.getVehicleId()).orElse(null);
 
         if (vehicle == null) {
+
             return 0;
+
         }
 
-        java.time.LocalDate startDate = java.time.LocalDate.parse(rental.getStartDate());
+        java.time.LocalDate startDate =
+                java.time.LocalDate.parse(rental.getStartDate());
 
-        java.time.LocalDate endDate = java.time.LocalDate.parse(rental.getEndDate());
+        java.time.LocalDate endDate =
+                java.time.LocalDate.parse(rental.getEndDate());
 
-        long days = java.time.temporal.ChronoUnit.DAYS.between(startDate, endDate);
+        long days = java.time.temporal.ChronoUnit.DAYS
+                .between(startDate, endDate);
 
         double totalAmount = days * vehicle.getPricePerDay();
 
@@ -143,8 +165,48 @@ public class RentalServiceImpl implements RentalService {
         rentalRepo.save(rental);
 
         return totalAmount;
+
     }
-    
+
+    // Return Vehicle
+
+    @Override
+    public String returnVehicle(Long rentalId) {
+
+        Rental rental = rentalRepo.findById(rentalId).orElse(null);
+
+        if (rental == null) {
+
+            return "Rental not found";
+
+        }
+
+        if (rental.isReturned()) {
+
+            return "Vehicle has already been returned";
+
+        }
+
+        Vehicle vehicle =
+                vehicleRepo.findById(rental.getVehicleId()).orElse(null);
+
+        if (vehicle == null) {
+
+            return "Vehicle not found";
+
+        }
+
+        rental.setReturned(true);
+
+        rentalRepo.save(rental);
+
+        vehicle.setAvailable(true);
+
+        vehicleRepo.save(vehicle);
+
+        return "Vehicle returned successfully";
+
+    }
 
 }
 

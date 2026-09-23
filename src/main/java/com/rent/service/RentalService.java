@@ -1,4 +1,3 @@
-
 package com.rent.service;
 
 import java.util.List;
@@ -18,4 +17,6 @@ public interface RentalService {
     void deleteRental(Long id);
 
     double calculateRentalAmount(Long rentalId);
+
+    String returnVehicle(Long rentalId);
 }
