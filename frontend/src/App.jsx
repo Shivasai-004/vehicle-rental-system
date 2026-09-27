@@ -1,49 +1,104 @@
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+
+import Portal from './pages/Portal'
+import Dashboard from './pages/Dashboard'
 import Vehicles from './pages/Vehicles'
 import Customers from './pages/Customers'
+import Rental from './pages/Rental'
+import User from './pages/User'
+
 import './App.css'
 
 function App() {
+
   return (
+
     <BrowserRouter>
+
       <nav>
-        <h2>Vehicle Rental System</h2>
+
+        <h2>
+          Vehicle Rental System
+        </h2>
 
         <div>
-          <Link to="/">Home</Link>
-          <Link to="/vehicles">Vehicles</Link>
-          <Link to="/customers">Customers</Link>
-          <Link to="/rentals">Rentals</Link>
+
+          <Link to="/">
+            Portal
+          </Link>
+
+          <Link to="/admin">
+            Admin
+          </Link>
+
+          <Link to="/vehicles">
+            Vehicles
+          </Link>
+
+          <Link to="/customers">
+            Customers
+          </Link>
+
+          <Link to="/rentals">
+            Rentals
+          </Link>
+
         </div>
+
       </nav>
 
+
       <Routes>
+
+        {/* Portal Selection */}
+
         <Route
           path="/"
-          element={
-            <main>
-              <h1>Welcome to Vehicle Rental System</h1>
-              <p>
-                Manage vehicles, customers and rentals easily.
-              </p>
-
-              <div>
-                <Link to="/vehicles">
-                  <button>View Vehicles</button>
-                </Link>
-
-                <button>Rent a Vehicle</button>
-              </div>
-            </main>
-          }
+          element={<Portal />}
         />
 
-        <Route path="/vehicles" element={<Vehicles />} />
 
-        <Route path="/customers" element={<Customers />} />
+        {/* Admin Dashboard */}
+
+        <Route
+          path="/admin"
+          element={<Dashboard />}
+        />
+
+
+        {/* Vehicle Management */}
+
+        <Route
+          path="/vehicles"
+          element={<Vehicles />}
+        />
+
+
+        {/* Customer Management */}
+
+        <Route
+          path="/customers"
+          element={<Customers />}
+        />
+
+
+        {/* Rental Management */}
+
+        <Route
+          path="/rentals"
+          element={<Rental />}
+        />
+
+        <Route
+  path="/user"
+  element={<User />}
+/>
+
       </Routes>
+
     </BrowserRouter>
+
   )
 }
 

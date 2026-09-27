@@ -1,114 +1,1602 @@
+/* =========================================
+   GLOBAL
+========================================= */
 
-/* Navbar */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
 nav {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #ffffff;
+
+  min-height: 72px;
+  padding: 0 45px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  background-color: #222;
-  color: white;
+  justify-content: space-between;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
 }
 
 nav h2 {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #ffffff !important;
+  background: transparent !important;
+
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
 }
 
 nav div {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 28px;
 }
 
 nav a {
-  color: white;
+  color: #e2e8f0 !important;
+  background: transparent !important;
+
   text-decoration: none;
-  font-weight: 500;
+
+  border: none !important;
+  box-shadow: none !important;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: 0.2s;
 }
 
-/* Home Page */
+nav a:hover {
+  color: #ffffff !important;
+  background: transparent !important;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MAIN PAGE CONTAINER
+========================================= */
+
 main {
-  text-align: center;
-  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 45px 30px;
 }
 
-main h1 {
-  margin-bottom: 15px;
+body > div > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 30px;
 }
+
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+h2 {
+  font-size: 27px;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: #1e293b;
+  margin-top: 25px;
+}
+
+
+/* =========================================
+   HOME PAGE
+========================================= */
 
 main p {
+  color: #64748b;
+  font-size: 16px;
   margin-bottom: 25px;
 }
 
 main button {
-  padding: 12px 20px;
-  margin: 10px;
+  margin-right: 10px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+button {
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
+  border-radius: 7px;
 
-/* Vehicles Page */
-.vehicles-page {
-  padding: 40px;
-}
-
-.vehicles-page h1 {
-  margin-bottom: 30px;
-}
-
-/* Vehicle Cards Container */
-.vehicle-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-}
-
-/* Individual Vehicle Card */
-.vehicle-card {
-  width: 280px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.vehicle-card h2 {
-  margin-bottom: 15px;
-}
-
-.vehicle-card p {
-  margin: 8px 0;
-}
-
-.vehicle-card button {
-  margin-top: 15px;
   padding: 10px 18px;
-  border: none;
-  border-radius: 5px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
   cursor: pointer;
-}
-.available {
-  font-weight: bold;
+
+  transition: all 0.2s ease;
+
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.2);
 }
 
-.not-available {
-  font-weight: bold;
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
 }
-.customer-card {
-  width: 300px;
-  padding: 20px;
-  margin: 15px;
-  border: 1px solid #ddd;
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================================
+   FORMS
+========================================= */
+
+form {
+  background: white;
+
+  padding: 25px;
+
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: white;
+
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
+
+  border: 1px solid #e2e8f0;
+
+  max-width: 700px;
+}
+
+form div {
+  margin-bottom: 5px;
+}
+
+label {
+  display: inline-block;
+  min-width: 110px;
+
+  font-weight: 600;
+  color: #334155;
+}
+
+
+/* =========================================
+   ALL INPUTS AND SELECTS
+========================================= */
+
+input,
+select {
+  padding: 11px 13px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #1e293b !important;
+
+  outline: none;
+
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+
+input::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+select option {
+  color: #1e293b !important;
+  background-color: #ffffff !important;
+}
+
+input:focus,
+select:focus {
+  color: #0f172a !important;
+
+  background-color: #ffffff;
+
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================
+   CUSTOMER FORM
+========================================= */
+
+.customer-form {
+  background: white;
+
+  max-width: 650px;
+
+  padding: 25px;
+
+  border-radius: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
+
+  margin-bottom: 25px;
+}
+
+.customer-form h2 {
+  margin-top: 0;
+}
+
+.customer-form input {
+  display: block;
+
+  width: 100%;
+
+  margin: 12px 0;
+
+  color: #1e293b !important;
+
+  background-color: #ffffff !important;
+}
+
+.customer-form input::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+
+/* =========================================
+   CUSTOMER CARDS
+========================================= */
+
+.customer-card {
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 22px;
+
+  margin-bottom: 16px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.07);
+
+  max-width: 650px;
+
+  transition: 0.2s;
+}
+
+.customer-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
 }
 
 .customer-card h3 {
   margin-top: 0;
-  font-size: 22px;
+
+  color: #1e3a8a;
+
+  font-size: 20px;
 }
 
 .customer-card p {
+  color: #475569;
+
   margin: 8px 0;
+}
+
+.customer-card button {
+  margin-right: 10px;
+}
+
+.customer-card button:last-child {
+  margin-right: 0;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+table {
+  width: 100%;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  background: white;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  margin-top: 20px;
+
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
+
+  border: 1px solid #e2e8f0;
+}
+
+th {
+  background: #1e293b;
+
+  color: white;
+
+  padding: 14px 12px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+td {
+  padding: 13px 12px;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td button {
+  font-size: 12px;
+
+  padding: 7px 11px;
+
+  margin: 2px;
+}
+
+
+/* =========================================
+   TOTAL COUNTERS
+========================================= */
+
+p {
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   HOME DASHBOARD
+========================================= */
+
+.home-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 30px;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.hero-section h1 {
+  font-size: 38px;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.hero-section p {
+  font-size: 17px;
+  color: #64748b;
+}
+
+.dashboard-cards {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.dashboard-card {
+  background: white;
+
+  padding: 30px 25px;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.08);
+
+  transition: all 0.25s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.13);
+}
+
+.card-icon {
+  font-size: 45px;
+
+  margin-bottom: 15px;
+}
+
+.dashboard-card h2 {
+  margin: 10px 0;
+
+  color: #1e3a8a;
+
+  font-size: 23px;
+}
+
+.dashboard-card p {
+  color: #64748b;
+
+  line-height: 1.6;
+
+  min-height: 55px;
+
+  margin-bottom: 22px;
+}
+
+.dashboard-card button {
+  margin-top: 5px;
+
+  padding: 11px 20px;
+
+  border-radius: 7px;
+}
+
+
+/* =========================================
+   VEHICLES PAGE
+========================================= */
+
+.vehicles-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 30px;
+}
+
+.vehicles-page > h1 {
+  text-align: center;
+  margin-bottom: 35px;
+  color: #0f172a;
+}
+
+.vehicle-container {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.vehicle-card {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.08);
+
+  transition: all 0.25s ease;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.13);
+}
+
+.vehicle-card h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+
+  color: #1e3a8a;
+
+  font-size: 22px;
+}
+
+.vehicle-card p {
+  margin: 10px 0;
+
+  color: #475569;
+
+  font-size: 14px;
+}
+
+.vehicle-card p:first-of-type {
+  font-weight: 600;
+  color: #334155;
+}
+
+.vehicle-card .available {
+  color: #15803d;
+
+  font-weight: 700;
+
+  background: #f0fdf4;
+
+  padding: 8px 10px;
+
+  border-radius: 6px;
+
+  display: inline-block;
+}
+
+.vehicle-card .not-available {
+  color: #dc2626;
+
+  font-weight: 700;
+
+  background: #fef2f2;
+
+  padding: 8px 10px;
+
+  border-radius: 6px;
+
+  display: inline-block;
+}
+
+.vehicle-card button {
+  width: 100%;
+
+  margin: 15px 0 0;
+
+  padding: 11px;
+
+  font-size: 14px;
+}
+
+.vehicle-card button:disabled {
+  background: #cbd5e1;
+
+  color: #64748b;
+
+  box-shadow: none;
+}
+
+
+/* =========================================
+   CUSTOMERS PAGE
+========================================= */
+
+.customer-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 30px;
+}
+
+.customer-page > h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.customer-page > p {
+  background: white;
+
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
+.customer-page .customer-form {
+  margin: 0 auto 30px;
+
+  max-width: 650px;
+}
+
+.customer-form h2 {
+  text-align: center;
+
+  color: #1e3a8a;
+
+  margin-bottom: 20px;
+}
+
+.customer-form button {
+  margin-top: 8px;
+}
+
+.customer-page > div:last-child {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+.customer-page .customer-card {
+  max-width: none;
+
+  margin: 0;
+
+  padding: 22px;
+}
+
+.customer-page .customer-card h3 {
+  font-size: 21px;
+
+  margin-bottom: 15px;
+}
+
+.customer-page .customer-card p {
+  margin: 8px 0;
+
+  font-size: 14px;
+}
+
+.customer-page .customer-card button {
+  margin-top: 15px;
+}
+
+
+/* =========================================
+   RENTAL PAGE
+========================================= */
+
+.rental-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 30px;
+}
+
+.rental-page > h2 {
+  text-align: center;
+
+  font-size: 30px;
+
+  margin-bottom: 30px;
+}
+
+.rental-page > h3 {
+  color: #1e3a8a;
+
+  margin-bottom: 15px;
+}
+
+.rental-page form {
+  max-width: 750px;
+
+  margin: 0 auto;
+
+  padding: 28px;
+
+  border-radius: 14px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.08);
+}
+
+.rental-page form > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+}
+
+.rental-page form label {
+  width: 110px;
+
+  min-width: 110px;
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
+.rental-page form select,
+.rental-page form input {
+  flex: 1;
+
+  margin: 0;
+
+  padding: 11px 12px;
+
+  color: #1e293b !important;
+
+  background-color: #ffffff !important;
+}
+
+.rental-page form select option {
+  color: #1e293b !important;
+
+  background-color: #ffffff !important;
+}
+
+.rental-page form input::placeholder {
+  color: #64748b !important;
+
+  opacity: 1;
+}
+
+.rental-page form input:focus,
+.rental-page form select:focus {
+  color: #0f172a !important;
+
+  background-color: #ffffff !important;
+
+  border-color: #2563eb;
+
+  outline: none;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.rental-page form button {
+  margin-top: 10px;
+
+  margin-right: 10px;
+}
+
+.rental-page > h3:last-of-type {
+  margin-top: 40px;
+
+  font-size: 24px;
+}
+
+.rental-page table {
+  margin-top: 15px;
+
+  width: 100%;
+}
+
+.rental-page td button {
+  margin-right: 7px;
+
+  margin-bottom: 5px;
+}
+
+.rental-page td button:last-child {
+  margin-right: 0;
+}
+
+.rental-page .edit-btn {
+  background-color: #2563eb;
+}
+
+.rental-page .edit-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.rental-page .return-btn {
+  background-color: #16a34a;
+}
+
+.rental-page .return-btn:hover {
+  background-color: #15803d;
+}
+
+.rental-page .delete-btn {
+  background-color: #dc2626;
+}
+
+.rental-page .delete-btn:hover {
+  background-color: #b91c1c;
+}
+
+.rental-page form button[type="button"] {
+  background-color: #64748b;
+}
+
+.rental-page form button[type="button"]:hover {
+  background-color: #475569;
+}
+
+.rental-page td {
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   ADD VEHICLE FORM
+========================================= */
+
+.add-vehicle-form {
+  width: 420px;
+  margin: 20px auto;
+  color: #1e293b;
+}
+
+.add-vehicle-form input,
+.add-vehicle-form select {
+  color: #1e293b !important;
+  background-color: #ffffff !important;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  height: 42px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.add-vehicle-form input::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+.add-vehicle-form select option {
+  color: #1e293b !important;
+  background-color: #ffffff !important;
+}
+
+.add-vehicle-form label {
+  color: #334155;
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+
+
+/* =========================================
+   ADD VEHICLE BUTTONS
+========================================= */
+
+.add-vehicle-form .form-buttons {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  gap: 12px !important;
+
+  width: 100%;
+
+  margin-top: 15px !important;
+  margin-bottom: 0 !important;
+}
+
+.add-vehicle-form .form-buttons button {
+  display: inline-block !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+
+  flex: 0 0 auto !important;
+}
+
+
+/* =========================================
+   RENT VEHICLE FORM
+========================================= */
+
+.rent-form {
+  width: 420px;
+
+  margin: 20px auto;
+
+  padding: 20px;
+
+  background-color: #ffffff;
+
+  color: #1e293b;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  box-sizing: border-box;
+}
+
+.rent-form h2 {
+  margin-bottom: 15px;
+}
+
+.rent-form p {
+  color: #222;
+
+  margin: 8px 0;
+}
+
+.rent-form label {
+  display: block;
+
+  color: #222;
+
+  margin-top: 12px;
+
+  margin-bottom: 5px;
+}
+
+.rent-form input,
+.rent-form select {
+  width: 100%;
+
+  color: #1e293b !important;
+
+  background-color: #ffffff !important;
+
+  border: 1px solid #ccc;
+
+  border-radius: 6px;
+
+  padding: 10px;
+
+  height: 42px;
+
+  box-sizing: border-box;
+}
+
+.rent-form input::placeholder {
+  color: #64748b !important;
+
+  opacity: 1;
+}
+
+.rent-form select option {
+  color: #1e293b !important;
+
+  background-color: #ffffff !important;
+}
+
+
+/* =========================================
+   RENT VEHICLE BUTTONS
+========================================= */
+
+.rent-form .form-buttons {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  gap: 12px !important;
+
+  width: 100%;
+
+  margin-top: 15px !important;
+  margin-bottom: 0 !important;
+}
+
+.rent-form .form-buttons button {
+  display: inline-block !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+
+  flex: 0 0 auto !important;
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
+
+.success-message {
+  margin: 15px 0;
+
+  padding: 12px 16px;
+
+  background-color: #e8f5e9;
+
+  color: #2e7d32;
+
+  border: 1px solid #81c784;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  nav {
+    padding: 15px 20px;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  nav div {
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+  main,
+  body > div > div {
+    padding: 25px 18px;
+  }
+
+  form {
+    max-width: 100%;
+  }
+
+  table {
+    display: block;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicle-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .customer-page > div:last-child {
+    grid-template-columns: 1fr;
+  }
+
+  .rental-page {
+    padding: 30px 18px;
+  }
+
+  .rental-page table {
+    display: block;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  nav h2 {
+    font-size: 20px;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 23px;
+  }
+
+  form {
+    padding: 18px;
+  }
+
+  label {
+    display: block;
+
+    margin-bottom: 5px;
+  }
+
+  form input,
+  form select {
+    width: 100%;
+  }
+
+  .customer-form {
+    padding: 18px;
+  }
+
+  .customer-card {
+    padding: 18px;
+  }
+
+  .home-page {
+    padding: 30px 18px;
+  }
+
+  .hero-section h1 {
+    font-size: 27px;
+  }
+
+  .hero-section p {
+    font-size: 15px;
+  }
+
+  .vehicle-container {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicle-card {
+    padding: 20px;
+  }
+
+  .customer-page {
+    padding: 30px 18px;
+  }
+
+  .customer-page .customer-card {
+    padding: 18px;
+  }
+
+  .rental-page form {
+    padding: 20px;
+  }
+
+  .rental-page form > div {
+    display: block;
+  }
+
+  .rental-page form label {
+    display: block;
+
+    width: auto;
+
+    margin-bottom: 6px;
+  }
+
+  .rental-page form select,
+  .rental-page form input {
+    width: 100%;
+  }
+
+  .add-vehicle-form,
+  .rent-form {
+    width: 100%;
+  }
+
+  .add-vehicle-form .form-buttons,
+  .rent-form .form-buttons {
+    flex-direction: row !important;
+  }
+}
+.add-vehicle-form .form-buttons button + button {
+  margin-left: 15px !important;
+}
+/* =========================================
+   RENTAL PAGE - FINAL UI POLISH
+========================================= */
+
+.rental-page {
+  background: transparent;
+}
+
+.rental-page > h2 {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.rental-page > h3 {
+  font-weight: 700;
+}
+
+.rental-page table th {
+  text-align: center;
+}
+
+.rental-page table td {
+  text-align: center;
+}
+
+.rental-page table td:nth-child(2),
+.rental-page table td:nth-child(3) {
+  text-align: left;
+}
+
+.rental-page td button {
+  min-width: 70px;
+  margin: 3px 4px;
+}
+
+.rental-page .edit-btn {
+  background-color: #2563eb;
+}
+
+.rental-page .return-btn {
+  background-color: #16a34a;
+}
+
+.rental-page .delete-btn {
+  background-color: #dc2626;
+}
+
+.rental-page .edit-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.rental-page .return-btn:hover {
+  background-color: #15803d;
+}
+
+.rental-page .delete-btn:hover {
+  background-color: #b91c1c;
+}
+
+.rental-page td {
+  font-weight: 500;
+}
+/* =========================================
+   DASHBOARD PAGE
+========================================= */
+
+.dashboard-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 45px 30px;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+  margin-bottom: 8px;
+  font-size: 36px;
+  color: #0f172a;
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 16px;
+}
+
+
+/* =========================================
+   DASHBOARD STATS
+========================================= */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.stat-card {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.08);
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+}
+
+.stat-icon {
+  font-size: 38px;
+
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f5f9;
+
+  border-radius: 12px;
+}
+
+.stat-card h3 {
+  margin: 0 0 6px;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.stat-card h2 {
+  margin: 0;
+
+  color: #1e3a8a;
+
+  font-size: 28px;
+}
+
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.dashboard-actions {
+  margin-top: 45px;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.08);
+}
+
+.dashboard-actions h2 {
+  margin-top: 0;
+
+  color: #1e3a8a;
+
+  font-size: 22px;
+}
+
+.quick-action-container {
+  display: flex;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+.quick-action-container a {
+  text-decoration: none;
+}
+
+.quick-action-container button {
+  margin: 0;
+}
+
+
+/* =========================================
+   DASHBOARD RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .dashboard-page {
+    padding: 30px 18px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 28px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .quick-action-container {
+    flex-direction: column;
+  }
+
+  .quick-action-container button {
+    width: 100%;
+  }
+
+}
+/* =========================
+   USER RENTALS
+========================= */
+
+.user-rentals-section {
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.user-rentals-section h2 {
+  margin-bottom: 25px;
+}
+
+.user-rentals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.user-rental-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.user-rental-card h3 {
+  margin-bottom: 18px;
+}
+
+.user-rental-card p {
+  margin: 10px 0;
+}
+/* =========================
+   RENTAL PAGE
+========================= */
+
+.rental-page {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 35px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.rental-page h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.rental-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rental-page form div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.rental-page label {
+  font-weight: 600;
+}
+
+.rental-page input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.rental-page input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.rental-page form button {
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.rental-page > button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.rental-page > p {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+/* =========================
+   USER NAVIGATION
+========================= */
+
+.user-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.user-navigation a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+.user-navigation a:hover {
+  text-decoration: underline;
 }

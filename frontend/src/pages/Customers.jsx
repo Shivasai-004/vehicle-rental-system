@@ -150,7 +150,7 @@ function Customers() {
   }, []);
 
   return (
-    <div>
+    <div className="customer-page">
 
       <h1>Customers</h1>
 
