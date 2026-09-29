@@ -22,12 +22,12 @@ function Portal() {
 
       <section className="portal-cards">
 
-        {/* Admin Portal */}
+        {/* ADMIN PORTAL */}
 
         <div className="portal-card">
 
           <div className="portal-icon">
-            👨‍💼
+            🛠️
           </div>
 
           <h2>
@@ -35,8 +35,8 @@ function Portal() {
           </h2>
 
           <p>
-            Manage vehicles, customers,
-            rentals and system information.
+            Manage vehicles, customers, rentals,
+            reports and the complete rental system.
           </p>
 
           <Link to="/admin">
@@ -48,7 +48,7 @@ function Portal() {
         </div>
 
 
-        {/* User Portal */}
+        {/* USER PORTAL */}
 
         <div className="portal-card">
 
@@ -61,8 +61,8 @@ function Portal() {
           </h2>
 
           <p>
-            Browse available vehicles
-            and rent a vehicle.
+            Browse available vehicles, rent a vehicle
+            and manage your rentals.
           </p>
 
           <Link to="/user">
@@ -76,7 +76,6 @@ function Portal() {
       </section>
 
     </main>
-
   )
 }
 

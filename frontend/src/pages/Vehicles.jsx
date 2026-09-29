@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -18,6 +19,16 @@ function Vehicles() {
   const [endDate, setEndDate] = useState('')
 
   const [editingVehicleId, setEditingVehicleId] = useState(null)
+
+  /* =========================
+     SEARCH & FILTER STATES
+  ========================= */
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filterType, setFilterType] = useState('All')
+  const [filterAvailability, setFilterAvailability] = useState('All')
+  const [minPrice, setMinPrice] = useState('')
+  const [maxPrice, setMaxPrice] = useState('')
 
   const [vehicle, setVehicle] = useState({
     vehicleNumber: '',
@@ -83,6 +94,10 @@ function Vehicles() {
     setShowAddForm(false)
   }
 
+  /* =========================
+     ADD VEHICLE
+  ========================= */
+
   const handleAddVehicle = (event) => {
     event.preventDefault()
 
@@ -132,6 +147,10 @@ function Vehicles() {
       })
   }
 
+  /* =========================
+     EDIT VEHICLE
+  ========================= */
+
   const handleEditVehicle = (vehicleData) => {
     clearMessages()
 
@@ -152,6 +171,10 @@ function Vehicles() {
       behavior: 'smooth'
     })
   }
+
+  /* =========================
+     UPDATE VEHICLE
+  ========================= */
 
   const handleUpdateVehicle = (event) => {
     event.preventDefault()
@@ -205,6 +228,10 @@ function Vehicles() {
       })
   }
 
+  /* =========================
+     DELETE VEHICLE
+  ========================= */
+
   const handleDeleteVehicle = (id) => {
     const confirmDelete = window.confirm(
       'Are you sure you want to delete this vehicle?'
@@ -238,6 +265,10 @@ function Vehicles() {
         )
       })
   }
+
+  /* =========================
+     RENT VEHICLE
+  ========================= */
 
   const handleRentVehicle = () => {
     clearMessages()
@@ -292,12 +323,68 @@ function Vehicles() {
       })
   }
 
+  /* =========================
+     SEARCH & FILTER
+  ========================= */
+
+  const filteredVehicles = vehicles.filter((vehicleData) => {
+    const search = searchTerm.toLowerCase()
+
+    const matchesSearch =
+      String(vehicleData.brand || '')
+        .toLowerCase()
+        .includes(search) ||
+      String(vehicleData.model || '')
+        .toLowerCase()
+        .includes(search) ||
+      String(vehicleData.vehicleNumber || '')
+        .toLowerCase()
+        .includes(search)
+
+    const matchesType =
+      filterType === 'All' ||
+      vehicleData.type === filterType
+
+    const matchesAvailability =
+      filterAvailability === 'All' ||
+      (
+        filterAvailability === 'Available' &&
+        vehicleData.available
+      ) ||
+      (
+        filterAvailability === 'Not Available' &&
+        !vehicleData.available
+      )
+
+    const price = Number(vehicleData.pricePerDay)
+
+    const matchesMinPrice =
+      minPrice === '' ||
+      price >= Number(minPrice)
+
+    const matchesMaxPrice =
+      maxPrice === '' ||
+      price <= Number(maxPrice)
+
+    return (
+      matchesSearch &&
+      matchesType &&
+      matchesAvailability &&
+      matchesMinPrice &&
+      matchesMaxPrice
+    )
+  })
+
   return (
     <div className="vehicles-page">
 
+      {/* HEADER */}
+
       <div className="vehicles-header">
 
-        <h1>Available Vehicles</h1>
+        <h1>
+          Available Vehicles
+        </h1>
 
         <button
           className="add-vehicle-btn"
@@ -323,6 +410,8 @@ function Vehicles() {
 
       </div>
 
+      {/* MESSAGES */}
+
       {successMessage && (
         <div className="success-message">
           ✅ {successMessage}
@@ -334,6 +423,103 @@ function Vehicles() {
           ❌ {errorMessage}
         </div>
       )}
+
+      {/* SEARCH & FILTER */}
+
+      <div className="vehicle-filters">
+
+        <input
+          type="text"
+          placeholder="Search brand, model or vehicle number"
+          value={searchTerm}
+          onChange={(event) =>
+            setSearchTerm(event.target.value)
+          }
+        />
+
+        <select
+          value={filterType}
+          onChange={(event) =>
+            setFilterType(event.target.value)
+          }
+        >
+          <option value="All">
+            All Types
+          </option>
+
+          <option value="Sedan">
+            Sedan
+          </option>
+
+          <option value="SUV">
+            SUV
+          </option>
+
+          <option value="Hatchback">
+            Hatchback
+          </option>
+
+          <option value="MUV">
+            MUV
+          </option>
+
+          <option value="Luxury">
+            Luxury
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+        <select
+          value={filterAvailability}
+          onChange={(event) =>
+            setFilterAvailability(event.target.value)
+          }
+        >
+          <option value="All">
+            All Availability
+          </option>
+
+          <option value="Available">
+            Available
+          </option>
+
+          <option value="Not Available">
+            Not Available
+          </option>
+
+        </select>
+
+        <input
+          type="number"
+          placeholder="Min price"
+          value={minPrice}
+          onChange={(event) =>
+            setMinPrice(event.target.value)
+          }
+        />
+
+        <input
+          type="number"
+          placeholder="Max price"
+          value={maxPrice}
+          onChange={(event) =>
+            setMaxPrice(event.target.value)
+          }
+        />
+
+      </div>
+
+      {/* RESULT COUNT */}
+
+      <p className="vehicle-result-count">
+        Showing {filteredVehicles.length} of {vehicles.length} vehicles
+      </p>
+
+      {/* ADD / UPDATE VEHICLE FORM */}
 
       {showAddForm && (
         <form
@@ -351,7 +537,9 @@ function Vehicles() {
               : 'Add New Vehicle'}
           </h2>
 
-          <label>Vehicle Number</label>
+          <label>
+            Vehicle Number
+          </label>
 
           <input
             type="text"
@@ -361,7 +549,9 @@ function Vehicles() {
             onChange={handleChange}
           />
 
-          <label>Brand</label>
+          <label>
+            Brand
+          </label>
 
           <input
             type="text"
@@ -371,7 +561,9 @@ function Vehicles() {
             onChange={handleChange}
           />
 
-          <label>Model</label>
+          <label>
+            Model
+          </label>
 
           <input
             type="text"
@@ -381,7 +573,9 @@ function Vehicles() {
             onChange={handleChange}
           />
 
-          <label>Type</label>
+          <label>
+            Type
+          </label>
 
           <select
             name="type"
@@ -417,7 +611,9 @@ function Vehicles() {
             </option>
           </select>
 
-          <label>Price Per Day</label>
+          <label>
+            Price Per Day
+          </label>
 
           <input
             type="number"
@@ -447,10 +643,14 @@ function Vehicles() {
         </form>
       )}
 
+      {/* RENT FORM */}
+
       {showRentForm && selectedVehicle && (
         <div className="rent-form">
 
-          <h2>Rent Vehicle</h2>
+          <h2>
+            Rent Vehicle
+          </h2>
 
           <p>
             Vehicle: {selectedVehicle.brand}{' '}
@@ -467,7 +667,9 @@ function Vehicles() {
             {selectedVehicle.pricePerDay}
           </p>
 
-          <label>Customer</label>
+          <label>
+            Customer
+          </label>
 
           <select
             value={selectedCustomer}
@@ -489,7 +691,9 @@ function Vehicles() {
             ))}
           </select>
 
-          <label>Start Date</label>
+          <label>
+            Start Date
+          </label>
 
           <input
             type="date"
@@ -499,7 +703,9 @@ function Vehicles() {
             }
           />
 
-          <label>End Date</label>
+          <label>
+            End Date
+          </label>
 
           <input
             type="date"
@@ -536,78 +742,90 @@ function Vehicles() {
         </div>
       )}
 
+      {/* VEHICLE CARDS */}
+
       <div className="vehicle-container">
 
-        {vehicles.map((vehicle) => (
+        {filteredVehicles.length === 0 ? (
 
-          <div
-            className="vehicle-card"
-            key={vehicle.id}
-          >
+          <p>
+            No vehicles found matching your search or filters.
+          </p>
 
-            <h2>
-              {vehicle.brand} {vehicle.model}
-            </h2>
+        ) : (
 
-            <p>
-              Vehicle Number:{' '}
-              {vehicle.vehicleNumber}
-            </p>
+          filteredVehicles.map((vehicleData) => (
 
-            <p>
-              Type: {vehicle.type}
-            </p>
-
-            <p>
-              Price Per Day: ₹
-              {vehicle.pricePerDay}
-            </p>
-
-            <p
-              className={
-                vehicle.available
-                  ? 'available'
-                  : 'not-available'
-              }
+            <div
+              className="vehicle-card"
+              key={vehicleData.id}
             >
-              {vehicle.available
-                ? '🟢 Available'
-                : '🔴 Not Available'}
-            </p>
 
-            <button
-              disabled={!vehicle.available}
-              onClick={() => {
-                setSelectedVehicle(vehicle)
-                setShowRentForm(true)
-              }}
-            >
-              {vehicle.available
-                ? 'Rent Vehicle'
-                : 'Not Available'}
-            </button>
+              <h2>
+                {vehicleData.brand} {vehicleData.model}
+              </h2>
 
-            <button
-              type="button"
-              onClick={() =>
-                handleEditVehicle(vehicle)
-              }
-            >
-              Edit
-            </button>
+              <p>
+                Vehicle Number:{' '}
+                {vehicleData.vehicleNumber}
+              </p>
 
-            <button
-              type="button"
-              onClick={() =>
-                handleDeleteVehicle(vehicle.id)
-              }
-            >
-              Delete
-            </button>
+              <p>
+                Type: {vehicleData.type}
+              </p>
 
-          </div>
+              <p>
+                Price Per Day: ₹
+                {vehicleData.pricePerDay}
+              </p>
 
-        ))}
+              <p
+                className={
+                  vehicleData.available
+                    ? 'available'
+                    : 'not-available'
+                }
+              >
+                {vehicleData.available
+                  ? '🟢 Available'
+                  : '🔴 Not Available'}
+              </p>
+
+              <button
+                disabled={!vehicleData.available}
+                onClick={() => {
+                  setSelectedVehicle(vehicleData)
+                  setShowRentForm(true)
+                }}
+              >
+                {vehicleData.available
+                  ? 'Rent Vehicle'
+                  : 'Not Available'}
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  handleEditVehicle(vehicleData)
+                }
+              >
+                Edit
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  handleDeleteVehicle(vehicleData.id)
+                }
+              >
+                Delete
+              </button>
+
+            </div>
+
+          ))
+
+        )}
 
       </div>
 
